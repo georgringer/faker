@@ -54,7 +54,7 @@ class Runner implements SingletonInterface
     /**
      * @return array
      */
-    protected function createRecordFields():array
+    protected function createRecordFields()
     {
         $filled = [
             'pid' => $this->pid
