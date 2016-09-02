@@ -22,3 +22,4 @@ if (isset($GLOBALS['TCA'][$t])) {
         'to' => '+2months',
     ]);
 }
+unset($t);
