@@ -9,14 +9,14 @@ use TYPO3\CMS\Extbase\Mvc\Controller\CommandController;
 
 class FakerCommandController extends CommandController
 {
-    /**
-     * Generate dummy data
-     *
-     * @param string $table table name
-     * @param int $pid page id
-     * @param string $locale locale
-     * @param int $amount
-     */
+	/**
+	 * Generate dummy data
+	 *
+	 * @param string $table table name
+	 * @param int $pid page id
+	 * @param int $amount amount
+	 * @param string $locale locale
+	 */
     public function runCommand($table, $pid, $amount, $locale = Factory::DEFAULT_LOCALE)
     {
         $this->checkValidTableName($table);
