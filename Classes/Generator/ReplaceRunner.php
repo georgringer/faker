@@ -82,6 +82,9 @@ class ReplaceRunner implements SingletonInterface
         return $filled;
     }
 
+    /**
+     * @return array
+     */
     protected function getFakerFields()
     {
         $fields = [];

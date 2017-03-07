@@ -28,6 +28,7 @@ class Runner implements SingletonInterface
      * Runner constructor.
      * @param string $table
      * @param int $pid
+     * @param string $locale
      */
     public function __construct($table, $pid, $locale)
     {
@@ -37,6 +38,10 @@ class Runner implements SingletonInterface
         $this->faker = Factory::create($locale);
     }
 
+    /**
+     * @param int $amount
+     * @return void
+     */
     public function execute($amount = 1)
     {
         $dataMap = [];
@@ -68,7 +73,9 @@ class Runner implements SingletonInterface
         return $filled;
     }
 
-
+    /**
+     * @return array
+     */
     protected function getFakerFields()
     {
         $fields = [];

@@ -15,8 +15,9 @@ class FakerCommandController extends CommandController
      *
      * @param string $table table name
      * @param int $pid page id
-     * @param string $locale locale
      * @param int $amount
+     * @param string $locale locale
+     * @return void
      */
     public function runCommand($table, $pid, $amount, $locale = Factory::DEFAULT_LOCALE)
     {
@@ -30,6 +31,7 @@ class FakerCommandController extends CommandController
      * @param string $table table name
      * @param int $pid page id
      * @param string $locale locale
+     * @return void
      */
     public function replaceCommand($table, $pid = -1, $locale = Factory::DEFAULT_LOCALE)
     {
@@ -42,6 +44,7 @@ class FakerCommandController extends CommandController
      * @param int $pid
      * @param string $locale
      * @param $amount
+     * @return void
      */
     protected function executeFaker($table, $pid, $locale, $amount)
     {
@@ -54,6 +57,7 @@ class FakerCommandController extends CommandController
      * @param string $table
      * @param int $pid
      * @param string $locale
+     * @return void
      */
     protected function executeReplaceFaker($table, $pid, $locale)
     {
@@ -64,6 +68,7 @@ class FakerCommandController extends CommandController
 
     /**
      * @param string $table
+     * @return void
      */
     protected function checkValidTableName($table)
     {
