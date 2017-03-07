@@ -3,6 +3,7 @@
 namespace GeorgRinger\Faker\Command;
 
 use Faker\Factory;
+use GeorgRinger\Faker\Generator\ReplaceRunner;
 use GeorgRinger\Faker\Generator\Runner;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\CommandController;
@@ -24,6 +25,19 @@ class FakerCommandController extends CommandController
     }
 
     /**
+     * Replace existing data with dummy data
+     *
+     * @param string $table table name
+     * @param int $pid page id
+     * @param string $locale locale
+     */
+    public function replaceCommand($table, $pid = -1, $locale = Factory::DEFAULT_LOCALE)
+    {
+        $this->checkValidTableName($table);
+        $this->executeReplaceFaker($table, $pid, $locale);
+    }
+
+    /**
      * @param string $table
      * @param int $pid
      * @param string $locale
@@ -31,8 +45,21 @@ class FakerCommandController extends CommandController
      */
     protected function executeFaker($table, $pid, $locale, $amount)
     {
+        /** @var Runner $runner */
         $runner = GeneralUtility::makeInstance(Runner::class, $table, $pid, $locale);
         $runner->execute($amount);
+    }
+
+    /**
+     * @param string $table
+     * @param int $pid
+     * @param string $locale
+     */
+    protected function executeReplaceFaker($table, $pid, $locale)
+    {
+        /** @var ReplaceRunner $runner */
+        $runner = GeneralUtility::makeInstance(ReplaceRunner::class, $table, $pid, $locale);
+        $runner->execute();
     }
 
     /**
