@@ -8,7 +8,7 @@ $EM_CONF[$_EXTKEY] = [
     'author_email' => 'georg.ringer@gmail.com',
     'state' => 'alpha',
     'clearCacheOnLoad' => true,
-    'version' => '1.0.0',
+    'version' => '1.0.1',
     'constraints' =>
         [
             'depends' => [
