@@ -5,7 +5,7 @@ namespace GeorgRinger\Faker\Generator;
 use Faker\Factory;
 use Faker\Generator;
 use GeorgRinger\Faker\Property\PropertyInterface;
-use TYPO3\CMS\Core\Database\DatabaseConnection;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -46,16 +46,15 @@ class ReplaceRunner implements SingletonInterface
      */
     public function execute()
     {
-        $where = '';
+        /** @var \TYPO3\CMS\Core\Database\Query\QueryBuilder$queryBuilder */
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($this->table);
+        $queryBuilder->select('*')->from($this->table);
+
         if ($this->pid > -1) {
-            $where = 'pid = ' . (int)$this->pid;
+            $queryBuilder->where($queryBuilder->expr()->eq('pid', $this->pid));
         }
 
-        $records = $this->getDatabaseConnection()->exec_SELECTgetRows(
-            'uid',
-            $this->table,
-            $where
-        );
+        $records = $queryBuilder->execute();
 
         $dataMap = [];
         foreach ($records as $record) {
@@ -95,13 +94,5 @@ class ReplaceRunner implements SingletonInterface
         }
 
         return $fields;
-    }
-
-    /**
-     * @return DatabaseConnection
-     */
-    protected function getDatabaseConnection()
-    {
-        return $GLOBALS['TYPO3_DB'];
     }
 }

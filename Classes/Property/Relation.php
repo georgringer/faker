@@ -3,8 +3,8 @@
 namespace GeorgRinger\Faker\Property;
 
 use Faker\Generator;
-use TYPO3\CMS\Backend\Utility\BackendUtility;
-use TYPO3\CMS\Core\Database\DatabaseConnection;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class Relation implements PropertyInterface
 {
@@ -28,11 +28,14 @@ class Relation implements PropertyInterface
     protected function getRelationUids(array $configuration)
     {
         $table = $configuration['table'];
-        $rows = $this->getDatabaseConnection()->exec_SELECTgetRows(
-            'uid',
-            $table,
-            'pid=' . (int)$configuration['pid'] . BackendUtility::deleteClause($table)
+
+        /** @var \TYPO3\CMS\Core\Database\Query\QueryBuilder$queryBuilder */
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
+        $queryBuilder->select('uid')->from($table)->where(
+            $queryBuilder->expr()->eq('pid', (int)$configuration['pid'])
         );
+        $rows= $queryBuilder->execute();
+
         $list = [];
         foreach ($rows as $row) {
             $list[] = $row['uid'];
@@ -56,13 +59,5 @@ class Relation implements PropertyInterface
             $r[] = $arr[$i];
         }
         return $num == 1 ? $r[0] : $r;
-    }
-
-    /**
-     * @return DatabaseConnection
-     */
-    protected function getDatabaseConnection()
-    {
-        return $GLOBALS['TYPO3_DB'];
     }
 }
