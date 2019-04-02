@@ -66,6 +66,10 @@ class Runner implements SingletonInterface
         ];
 
         foreach ($this->getFakerFields() as $name => $config) {
+            if (!empty($config['pid']) && $config['pid'] === 'current') {
+                $config['pid'] = $this->pid;
+            }
+
             /** @var PropertyInterface $property */
             $property = GeneralUtility::makeInstance($config['type']);
             $filled[$name] = $property->generate($this->faker, $config);

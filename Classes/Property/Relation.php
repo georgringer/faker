@@ -13,7 +13,7 @@ class Relation implements PropertyInterface
         return [
             'type' => self::class,
             'table' => $configuration['table'],
-            'pid' => $configuration['pid'],
+            'pid' => isset($configuration['pid']) ? $configuration['pid'] : 'current',
             'min' => $configuration['min'],
             'max' => $configuration['max'],
         ];
