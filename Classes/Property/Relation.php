@@ -47,6 +47,12 @@ class Relation implements PropertyInterface
         return '';
     }
 
+    /**
+     * @param array $arr
+     * @param int $num
+     *
+     * @return array Returns an array with random $num elements from original array
+     */
     protected function array_random($arr, $num = 1)
     {
         if ($num === 0) {
@@ -58,6 +64,6 @@ class Relation implements PropertyInterface
         for ($i = 0; $i < $num; $i++) {
             $r[] = $arr[$i];
         }
-        return $num == 1 ? $r[0] : $r;
+        return $r;
     }
 }
