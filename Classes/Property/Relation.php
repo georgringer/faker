@@ -3,8 +3,8 @@
 namespace GeorgRinger\Faker\Property;
 
 use Faker\Generator;
-use TYPO3\CMS\Backend\Utility\BackendUtility;
-use TYPO3\CMS\Core\Database\DatabaseConnection;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class Relation implements PropertyInterface
 {
@@ -13,7 +13,7 @@ class Relation implements PropertyInterface
         return [
             'type' => self::class,
             'table' => $configuration['table'],
-            'pid' => $configuration['pid'],
+            'pid' => isset($configuration['pid']) ? $configuration['pid'] : 'current',
             'min' => $configuration['min'],
             'max' => $configuration['max'],
         ];
@@ -28,11 +28,14 @@ class Relation implements PropertyInterface
     protected function getRelationUids(array $configuration)
     {
         $table = $configuration['table'];
-        $rows = $this->getDatabaseConnection()->exec_SELECTgetRows(
-            'uid',
-            $table,
-            'pid=' . (int)$configuration['pid'] . BackendUtility::deleteClause($table)
+
+        /** @var \TYPO3\CMS\Core\Database\Query\QueryBuilder$queryBuilder */
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
+        $queryBuilder->select('uid')->from($table)->where(
+            $queryBuilder->expr()->eq('pid', (int)$configuration['pid'])
         );
+        $rows= $queryBuilder->execute();
+
         $list = [];
         foreach ($rows as $row) {
             $list[] = $row['uid'];
@@ -44,6 +47,12 @@ class Relation implements PropertyInterface
         return '';
     }
 
+    /**
+     * @param array $arr
+     * @param int $num
+     *
+     * @return array Returns an array with random $num elements from original array
+     */
     protected function array_random($arr, $num = 1)
     {
         if ($num === 0) {
@@ -55,14 +64,6 @@ class Relation implements PropertyInterface
         for ($i = 0; $i < $num; $i++) {
             $r[] = $arr[$i];
         }
-        return $num == 1 ? $r[0] : $r;
-    }
-
-    /**
-     * @return DatabaseConnection
-     */
-    protected function getDatabaseConnection()
-    {
-        return $GLOBALS['TYPO3_DB'];
+        return $r;
     }
 }
