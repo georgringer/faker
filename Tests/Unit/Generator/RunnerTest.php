@@ -3,7 +3,7 @@
 namespace GeorgRinger\Faker\Tests\Unit\Generator;
 
 use GeorgRinger\Faker\Generator\Runner;
-use TYPO3\CMS\Core\Tests\UnitTestCase;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 class RunnerTest extends UnitTestCase
 {

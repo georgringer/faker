@@ -3,7 +3,7 @@
 namespace GeorgRinger\Faker\Tests\Unit\Property;
 
 use GeorgRinger\Faker\Property\Date;
-use TYPO3\CMS\Core\Tests\UnitTestCase;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 class DateTest extends UnitTestCase
 {

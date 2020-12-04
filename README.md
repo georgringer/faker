@@ -6,8 +6,8 @@ This extensions uses https://github.com/fzaninotto/Faker
 
 ## Requirements
 
-- TYPO3 CMS 7.6+
-- PHP 5.6 - 7
+- TYPO3 CMS 8.4+
+- PHP 7.0-7.4
 - License: GPL 2
 
 ## Manual

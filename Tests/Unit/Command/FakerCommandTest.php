@@ -2,12 +2,16 @@
 
 namespace GeorgRinger\Faker\Tests\Unit\Command;
 
-use GeorgRinger\Faker\Command\FakerCommandController;
+use Faker\Factory;
+use GeorgRinger\Faker\Command\FakerCommand;
 use GeorgRinger\Faker\Generator\Runner;
-use TYPO3\CMS\Core\Tests\UnitTestCase;
+use PHPUnit\Framework\MockObject\MockObject;
+use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Output\NullOutput;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-class FakerCommandControllerTest extends UnitTestCase
+class FakerCommandTest extends UnitTestCase
 {
 
     /**
@@ -15,10 +19,10 @@ class FakerCommandControllerTest extends UnitTestCase
      */
     public function checkValidTableNameFailsForInvalidTableName()
     {
-        $mockedCommandController = $this->getAccessibleMock(FakerCommandController::class, ['outputLine', 'sendAndExit']);
-        $mockedCommandController->expects($this->once())->method('outputLine');
+        $mockedCommand = $this->getAccessibleMock(FakerCommand::class, ['outputLine', 'sendAndExit']);
+        $mockedCommand->expects($this->once())->method('outputLine');
 
-        $mockedCommandController->_call('checkValidTableName', 'invalid');
+        $this->assertFalse($mockedCommand->_call('checkValidTableName', 'invalid'));
     }
 
 
@@ -27,13 +31,18 @@ class FakerCommandControllerTest extends UnitTestCase
      */
     public function fakerGeneratorIsCalled()
     {
+        /** @var Runner $mockedRunner */
         $mockedRunner = $this->getAccessibleMock(Runner::class, ['execute'], [], '', false);
+        $this->resetSingletonInstances = true;
         GeneralUtility::setSingletonInstance(Runner::class, $mockedRunner);
-        $mockedCommandController = $this->getAccessibleMock(FakerCommandController::class, ['outputLine', 'sendAndExit', 'checkValidTableName']);
-        $mockedCommandController->expects($this->once())->method('checkValidTableName');
+        /** @var MockObject $mockedRunner */
         $mockedRunner->expects($this->once())->method('execute');
 
-        $mockedCommandController->_call('runCommand', 'table', 123, 1);
+        $mockedCommand = $this->getAccessibleMock(FakerCommand::class, ['checkValidTableName']);
+        $mockedCommand->method('checkValidTableName')->willReturn(true);
+        $mockedCommand->expects($this->once())->method('checkValidTableName');
+
+        $mockedCommand->_call('executeFaker', 'table', 123, Factory::DEFAULT_LOCALE, 1);
     }
 //
 
@@ -42,8 +51,8 @@ class FakerCommandControllerTest extends UnitTestCase
      */
     public function checkValidTableNameFailsForNotActiveTable()
     {
-        $mockedCommandController = $this->getAccessibleMock(FakerCommandController::class, ['outputLine', 'sendAndExit']);
-        $mockedCommandController->expects($this->once())->method('outputLine');
+        $mockedCommand = $this->getAccessibleMock(FakerCommand::class, ['outputLine', 'sendAndExit']);
+        $mockedCommand->expects($this->once())->method('outputLine');
 
         $GLOBALS['TCA'] = [
             'notactive' => [
@@ -52,7 +61,7 @@ class FakerCommandControllerTest extends UnitTestCase
                 ]
             ]
         ];
-        $mockedCommandController->_call('checkValidTableName', 'notactive');
+        $this->assertFalse($mockedCommand->_call('checkValidTableName', 'notactive'));
     }
 
 
@@ -61,8 +70,8 @@ class FakerCommandControllerTest extends UnitTestCase
      */
     public function checkValidTableNameFailsForNoFieldsUsingFaker()
     {
-        $mockedCommandController = $this->getAccessibleMock(FakerCommandController::class, ['outputLine', 'sendAndExit']);
-        $mockedCommandController->expects($this->once())->method('outputLine');
+        $mockedCommand = $this->getAccessibleMock(FakerCommand::class, ['outputLine']);
+        $mockedCommand->expects($this->once())->method('outputLine');
 
         $GLOBALS['TCA'] = [
             'notactive' => [
@@ -84,6 +93,6 @@ class FakerCommandControllerTest extends UnitTestCase
                 ]
             ]
         ];
-        $mockedCommandController->_call('checkValidTableName', 'notactive');
+        $this->assertFalse($mockedCommand->_call('checkValidTableName', 'notactive'));
     }
 }
