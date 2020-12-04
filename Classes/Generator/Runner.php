@@ -53,7 +53,6 @@ class Runner implements SingletonInterface
         $this->dataHandler->start($dataMap, []);
         $this->dataHandler->admin = true;
         $this->dataHandler->process_datamap();
-//        print_r($this->dataHandler->errorLog);
     }
 
     /**
