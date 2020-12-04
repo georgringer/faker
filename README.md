@@ -15,7 +15,7 @@ This extensions uses https://github.com/fzaninotto/Faker
 After installation you can run the faker by using
 
 ```
-./typo3/cli_dispatch.phpsh extbase faker:run --table=tx_news_domain_model_news --pid=113 --amount=20
+bin/typo3 faker:execute --table tx_news_domain_model_news --pid 113 --amount 20
 ```
 
 ### Configuration
