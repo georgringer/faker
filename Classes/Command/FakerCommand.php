@@ -57,7 +57,7 @@ class FakerCommand extends Command
      */
     protected function outputLine($message, $arguments = null)
     {
-        $this->output->writeln(sprintf($message, $arguments));
+        $this->output->writeln(vsprintf($message, $arguments));
     }
 
     /**
@@ -82,7 +82,7 @@ class FakerCommand extends Command
             $return = $this->executeFaker($table, $pid, $locale, $amount);
         }
 
-        return $return ? Command::SUCCESS : Command::FAILURE;
+        return $return ? 0 : 1;
     }
 
     /**
