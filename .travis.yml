@@ -13,6 +13,8 @@ env:
 
 matrix:
   exclude:
+  - php: 7.4
+    env: TYPO3_VERSION=^8.7 COVERAGE=0
   - php: 7.0
     env: TYPO3_VERSION=^9.5 COVERAGE=0
   - php: 7.0
