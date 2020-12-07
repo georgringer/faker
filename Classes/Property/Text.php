@@ -9,8 +9,8 @@ class Text implements PropertyInterface
 {
     static public function getSettings(array $configuration = [])
     {
-        $from = MathUtility::forceIntegerInRange((int)$configuration['from'], 5, 20000, 20);
-        $to = $configuration['to'] ?: $from;
+        $from = MathUtility::forceIntegerInRange((int)($configuration['from'] ?? 20), 5, 20000);
+        $to = $configuration['to'] ?? $from;
         return [
             'type' => self::class,
             'from' => $from,

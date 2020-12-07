@@ -8,8 +8,8 @@ class Date implements PropertyInterface
 {
     static public function getSettings(array $configuration = [])
     {
-        $from = $configuration['from'] ?: '-1month';
-        $to = $configuration['to'] ?: '+3month';
+        $from = $configuration['from'] ?? '-1month';
+        $to = $configuration['to'] ?? '+3month';
         return [
             'type' => self::class,
             'from' => $from,

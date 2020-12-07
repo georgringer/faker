@@ -19,12 +19,13 @@
     "GPL-2.0+"
   ],
   "require": {
-    "typo3/cms-core": ">=8.7.0,<9.5.99",
-    "fzaninotto/faker": "1.6.*"
+    "typo3/cms-core": "^8.7 || ^9.5 || ^10.4",
+    "fzaninotto/faker": "^1.9"
   },
   "require-dev": {
-    "php": ">=5.6.0",
-    "phpunit/phpunit": "~5.3.0"
+    "php": "^7.0",
+    "phpunit/phpunit": "^6.2 || ^8.0",
+    "typo3/testing-framework": "^1.3 || ^4.15 || ^6.5"
   },
   "autoload": {
     "psr-4": {
@@ -33,8 +34,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "GeorgRinger\\Faker\\Tests\\": "Tests",
-      "TYPO3\\CMS\\Core\\Tests\\": ".Build/vendor/typo3/cms/typo3/sysext/core/Tests/"
+      "GeorgRinger\\Faker\\Tests\\": "Tests"
     }
   },
   "replace": {

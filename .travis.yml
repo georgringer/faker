@@ -1,18 +1,24 @@
 language: php
 
 php:
-  - 5.6
   - 7.0
+  - 7.2
+  - 7.4
 
 env:
   matrix:
-    - TYPO3_VERSION=7.6.* COVERAGE=0
-    - TYPO3_VERSION=8.1.* COVERAGE=0
+    - TYPO3_VERSION=^8.7 COVERAGE=0
+    - TYPO3_VERSION=^9.5 COVERAGE=0
+    - TYPO3_VERSION=^10.4 COVERAGE=0
 
 matrix:
   exclude:
-  - php: 5.6
-    env: TYPO3_VERSION=8.1.* COVERAGE=0
+  - php: 7.4
+    env: TYPO3_VERSION=^8.7 COVERAGE=0
+  - php: 7.0
+    env: TYPO3_VERSION=^9.5 COVERAGE=0
+  - php: 7.0
+    env: TYPO3_VERSION=^10.4 COVERAGE=0
 
 sudo: false
 
@@ -30,7 +36,7 @@ before_install:
   - composer --version
 
 before_script:
-  - composer require typo3/cms=$TYPO3_VERSION
+  - composer require typo3/cms-core=$TYPO3_VERSION
   # Restore composer.json
   - git checkout composer.json
   - export TYPO3_PATH_WEB=$PWD/.Build/Web
@@ -40,7 +46,7 @@ script:
     if [[ "$COVERAGE" == "0" ]]; then
       echo;
       echo "Running unit tests";
-      .Build/bin/phpunit --coverage-clover=unittest-coverage.clover -c .Build/vendor/typo3/cms/typo3/sysext/core/Build/UnitTests.xml Tests/Unit/
+      .Build/bin/phpunit -c .Build/vendor/typo3/testing-framework/Resources/Core/Build/UnitTests.xml Tests/Unit/
     fi
   - >
 
@@ -48,7 +54,7 @@ script:
     if [[ "$COVERAGE" == "1" ]]; then
       echo;
       echo "Running unit tests";
-      .Build/bin/phpunit --coverage-clover=unittest-coverage.clover -c .Build/vendor/typo3/cms/typo3/sysext/core/Build/UnitTests.xml Tests/Unit/
+      .Build/bin/phpunit --coverage-clover=unittest-coverage.clover -c .Build/vendor/typo3/testing-framework/Resources/Core/Build/UnitTests.xml Tests/Unit/
     fi
   - >
     echo;

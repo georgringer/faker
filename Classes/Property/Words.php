@@ -9,7 +9,7 @@ class Words implements PropertyInterface
     static public function getSettings(array $configuration = [])
     {
         $min = MathUtility::forceIntegerInRange((int)$configuration['min'], 0, 20, 2);
-        $max = $configuration['max'] ?: $min;
+        $max = $configuration['max'] ?? $min;
         return [
             'type' => self::class,
             'min' => $min,

@@ -52,8 +52,8 @@ class Runner implements SingletonInterface
         $GLOBALS['BE_USER']->user['admin'] = true;
         $this->dataHandler->start($dataMap, []);
         $this->dataHandler->admin = true;
+        $this->dataHandler->bypassWorkspaceRestrictions = true;
         $this->dataHandler->process_datamap();
-//        print_r($this->dataHandler->errorLog);
     }
 
     /**

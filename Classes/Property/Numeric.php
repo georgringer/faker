@@ -10,7 +10,7 @@ class Numeric implements PropertyInterface
     static public function getSettings(array $configuration = [])
     {
         $min = MathUtility::forceIntegerInRange((int)$configuration['min'], -2147483647, 2147483647, 0);
-        $max = $configuration['max'] ?: $min;
+        $max = $configuration['max'] ?? $min;
         return [
             'type' => self::class,
             'subtype' => $configuration['subtype'],
