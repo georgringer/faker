@@ -34,6 +34,14 @@ $GLOBALS['TCA'][$t]['columns']['description']['faker'] = \GeorgRinger\Faker\Prop
 	'from' => 200,
 	'to' => 300,
 ]);
+$GLOBALS['TCA'][$t]['columns']['title']['author'] = \GeorgRinger\Faker\Property\RandomElement::getSettings([
+	'array' => [
+		'Alice Apple',
+		'Bob Banana',
+		'Clive Clementine',
+		'Daphne Dried-Fruit',
+	],
+]);
 $GLOBALS['TCA'][$t]['columns']['starttime']['faker'] = \GeorgRinger\Faker\Property\Date::getSettings([
 	'from' => '-1month',
 	'to' => '+3month',
