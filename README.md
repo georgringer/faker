@@ -34,6 +34,10 @@ $GLOBALS['TCA'][$t]['columns']['description']['faker'] = \GeorgRinger\Faker\Prop
 	'from' => 200,
 	'to' => 300,
 ]);
+$GLOBALS['TCA'][$t]['columns']['bodytext']['faker'] = \GeorgRinger\Faker\Property\RealText::getSettings([
+	'maxNbChars' => 200,
+	'indexSize' => 2,
+]);
 $GLOBALS['TCA'][$t]['columns']['title']['author'] = \GeorgRinger\Faker\Property\RandomElement::getSettings([
 	'array' => [
 		'Alice Apple',
