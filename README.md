@@ -15,7 +15,8 @@ This extensions uses https://github.com/fzaninotto/Faker
 After installation you can run the faker by using
 
 ```
-bin/typo3 faker:execute --table tx_news_domain_model_news --pid 113 --amount 20
+# arguments are <tablename> <pid> <amount>
+bin/typo3 faker:execute tx_news_domain_model_news 113 20
 ```
 
 ### Configuration
