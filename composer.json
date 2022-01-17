@@ -19,7 +19,7 @@
     "GPL-2.0+"
   ],
   "require": {
-    "typo3/cms-core": "^8.7 || ^9.5 || ^10.4",
+    "typo3/cms-core": "^8.7 || ^9.5 || ^10.4 || ^11.5",
     "fzaninotto/faker": "^1.9"
   },
   "require-dev": {
