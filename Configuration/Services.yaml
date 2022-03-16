@@ -1,0 +1,14 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  GeorgRinger\Faker\:
+    resource: '../Classes/*'
+    exclude: '../Classes/Generator/*'
+  GeorgRinger\Faker\Command\FakerCommand:
+    tags:
+      - name: 'console.command'
+        command: 'faker:execute'
+        schedulable: false
