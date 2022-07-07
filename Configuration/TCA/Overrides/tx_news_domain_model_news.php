@@ -5,8 +5,6 @@ $t = 'tx_news_domain_model_news';
 if (isset($GLOBALS['TCA'][$t])) {
     $GLOBALS['TCA'][$t]['ctrl']['faker'] = true;
 
-    $GLOBALS['TCA'][$t]['columns']['fal_media']['config']['appearance']['elementBrowserEnabled'] = false;
-
     $GLOBALS['TCA'][$t]['columns']['title']['faker'] = \GeorgRinger\Faker\Property\Text::getSettings(['from' => 15, 'to' => 60]);
     $GLOBALS['TCA'][$t]['columns']['teaser']['faker'] = \GeorgRinger\Faker\Property\Text::getSettings(['from' => 100, 'to' => 1500]);
     $GLOBALS['TCA'][$t]['columns']['bodytext']['faker'] = \GeorgRinger\Faker\Property\Text::getSettings(['from' => 500, 'to' => 10000]);
