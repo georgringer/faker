@@ -87,6 +87,12 @@ class Runner implements SingletonInterface
             if (isset($field['faker'])) {
                 $fields[$name] = $field['faker'];
             }
+
+            // Workaround so DataHandler doesn't set crdate to $GLOBALS['EXEC_TIME']
+            if ($GLOBALS['TCA'][$this->table]['ctrl']['crdate'] &&
+                $GLOBALS['TCA'][$this->table]['ctrl']['crdate'] == $name) {
+                unset($GLOBALS['TCA'][$this->table]['ctrl']['crdate']);
+            }
         }
 
         return $fields;
