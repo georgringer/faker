@@ -2,17 +2,22 @@
 
 [![Build Status](https://travis-ci.org/georgringer/faker.svg?branch=master)](https://travis-ci.org/georgringer/faker)
 
-This extensions uses https://github.com/fzaninotto/Faker
+This extensions uses https://github.com/FakerPHP/Faker
 
 ## Requirements
 
-- TYPO3 CMS 8.4+
-- PHP 7.0-7.4
+- TYPO3 CMS 10 or 11
+- PHP 7.4-8.2
 - License: GPL 2
 
 ## Manual
 
-After installation you can run the faker by using
+Install:
+```
+composer require --dev georgringer/faker
+```
+
+After installation, you can run the faker by using
 
 ```
 # arguments are <tablename> <pid> <amount>
