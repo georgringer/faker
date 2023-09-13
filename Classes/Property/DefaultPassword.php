@@ -10,7 +10,7 @@ class DefaultPassword implements PropertyInterface
     {
         return [
             'type' => self::class,
-            'password' => $configuration['password'],
+            'password' => $configuration['password'] ?? null,
         ];
     }
 

@@ -13,7 +13,7 @@ class Numeric implements PropertyInterface
         $max = $configuration['max'] ?? $min;
         return [
             'type' => self::class,
-            'subtype' => $configuration['subtype'],
+            'subtype' => $configuration['subtype'] ?? null,
             'nbMaxDecimals' => $configuration['nbMaxDecimals'] ?? null,
             'min' => $min,
             'max' => $max
