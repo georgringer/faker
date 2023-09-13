@@ -12,9 +12,10 @@ class RunnerTest extends UnitTestCase
      * @param string $table
      * @param array $expectedFields
      * @test
+     * @backupGlobals enabled
      * @dataProvider fakerFieldsAreReturnedDataProvider
      */
-    public function fakerFieldsAreReturned($table, $expectedFields)
+    public function fakerFieldsAreReturned(string $table, array $expectedFields)
     {
         $GLOBALS['TCA'] = [
             'empty' => [
@@ -48,14 +49,19 @@ class RunnerTest extends UnitTestCase
                 ]
             ]
         ];
-        $mockedRunner = $this->getAccessibleMock(Runner::class, ['dummy'], [], '', false);
-        $mockedRunner->_set('table', $table);
-        $result = $mockedRunner->_call('getFakerFields');
+        $mockedRunner = $this->getAccessibleMock(Runner::class, [], [], '', false);
+        $reflectionClass = new \ReflectionClass(Runner::class);
+        $tableProperty = $reflectionClass->getProperty('table');
+        $tableProperty->setAccessible(true);
+        $tableProperty->setValue($mockedRunner, $table);
+        $method = $reflectionClass->getMethod('getFakerFields');
+        $method->setAccessible(true);
+        $result = $method->invoke($mockedRunner); // Call the protected method
 
         $this->assertEquals($expectedFields, $result);
     }
 
-    public function fakerFieldsAreReturnedDataProvider()
+    static public function fakerFieldsAreReturnedDataProvider()
     {
         return [
             'empty' => [

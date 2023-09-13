@@ -20,7 +20,7 @@ class FullNameTest extends UnitTestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function correctSettingsAreReturnedDataProvider()
+    static public function correctSettingsAreReturnedDataProvider()
     {
         return [
             'basic' => [

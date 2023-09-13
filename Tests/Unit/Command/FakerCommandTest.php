@@ -19,7 +19,7 @@ class FakerCommandTest extends UnitTestCase
      */
     public function checkValidTableNameFailsForInvalidTableName()
     {
-        $mockedCommand = $this->getAccessibleMock(FakerCommand::class, ['outputLine', 'sendAndExit']);
+        $mockedCommand = $this->getAccessibleMock(FakerCommand::class, ['outputLine']);
         $mockedCommand->expects($this->once())->method('outputLine');
 
         $this->assertFalse($mockedCommand->_call('checkValidTableName', 'invalid'));
@@ -51,7 +51,7 @@ class FakerCommandTest extends UnitTestCase
      */
     public function checkValidTableNameFailsForNotActiveTable()
     {
-        $mockedCommand = $this->getAccessibleMock(FakerCommand::class, ['outputLine', 'sendAndExit']);
+        $mockedCommand = $this->getAccessibleMock(FakerCommand::class, ['outputLine']);
         $mockedCommand->expects($this->once())->method('outputLine');
 
         $GLOBALS['TCA'] = [

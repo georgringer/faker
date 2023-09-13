@@ -1,24 +1,24 @@
 language: php
 
 php:
-  - 7.0
-  - 7.2
   - 7.4
+  - 8.0
+  - 8.1
+  - 8.2
 
 env:
   matrix:
-    - TYPO3_VERSION=^8.7 COVERAGE=0
-    - TYPO3_VERSION=^9.5 COVERAGE=0
     - TYPO3_VERSION=^10.4 COVERAGE=0
+    - TYPO3_VERSION=^11.5 COVERAGE=0
 
 matrix:
   exclude:
-  - php: 7.4
-    env: TYPO3_VERSION=^8.7 COVERAGE=0
-  - php: 7.0
-    env: TYPO3_VERSION=^9.5 COVERAGE=0
-  - php: 7.0
-    env: TYPO3_VERSION=^10.4 COVERAGE=0
+    - php: 8.0
+      env: TYPO3_VERSION=^10.4 COVERAGE=0
+    - php: 8.1
+      env: TYPO3_VERSION=^10.4 COVERAGE=0
+    - php: 8.2
+      env: TYPO3_VERSION=^10.4 COVERAGE=0
 
 sudo: false
 
