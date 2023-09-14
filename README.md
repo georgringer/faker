@@ -1,13 +1,13 @@
 # TYPO3 CMS Extension `faker`
 
-[![Build Status](https://travis-ci.org/georgringer/faker.svg?branch=master)](https://travis-ci.org/georgringer/faker)
+![Build Status](https://github.com/georgringer/faker/actions/workflows/tests.yml/badge.svg?branch=master)
 
 This extensions uses https://github.com/FakerPHP/Faker
 
 ## Requirements
 
-- TYPO3 CMS 10 or 11
-- PHP 7.4-8.2
+- TYPO3 CMS 10, 11, 12
+- PHP 7.4-8.3
 - License: GPL 2
 
 ## Manual
