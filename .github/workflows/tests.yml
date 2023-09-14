@@ -42,9 +42,6 @@ jobs:
           extensions: intl, mbstring, pdo, pdo_sqlite, sqlite3, zip
           tools: composer:v2
 
-      - name: Install Composer Dependencies
-        run: composer install
-
       - name: Set TYPO3 Version
         run: composer require typo3/cms-core=${{ matrix.typo3-version }}
 
