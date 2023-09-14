@@ -1,0 +1,55 @@
+name: PHP CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version:
+          - '7.4'
+          - '8.0'
+          - '8.1'
+          - '8.2'
+        typo3-version:
+          - '^10.4'
+          - '^11.5'
+        exclude:
+          - php-version: '8.0'
+            typo3-version: '^10.4'
+          - php-version: '8.1'
+            typo3-version: '^10.4'
+          - php-version: '8.2'
+            typo3-version: '^10.4'
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: intl, mbstring, pdo, pdo_sqlite, sqlite3, zip
+          tools: composer:v2
+
+      - name: Install Composer Dependencies
+        run: composer install
+
+      - name: Set TYPO3 Version
+        run: composer require typo3/cms-core=${{ matrix.typo3-version }}
+
+      - name: Run PHP Lint
+        run: find . -name \*.php ! -path "./.Build/*" | parallel --gnu php -d display_errors=stderr -l {} > /dev/null
+
+      - name: Run Unit Tests
+        run: .Build/bin/phpunit -c .Build/vendor/typo3/testing-framework/Resources/Core/Build/UnitTests.xml Tests/Unit/

@@ -76,6 +76,7 @@ class FakerCommand extends Command
         $pid = $input->getArgument('pid') ?: -1;
         $table = $input->getArgument('table');
 
+        \TYPO3\CMS\Core\Core\Bootstrap::initializeBackendAuthentication();
         if ($input->getOption('replace')) {
             $return = $this->executeReplaceFaker($table, $pid, $locale);
         } else {

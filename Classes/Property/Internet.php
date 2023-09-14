@@ -10,7 +10,7 @@ class Internet implements PropertyInterface
     {
         return [
             'type' => self::class,
-            'subtype' => $configuration['subtype'],
+            'subtype' => $configuration['subtype'] ?? null,
         ];
     }
 
