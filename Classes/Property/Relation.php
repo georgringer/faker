@@ -37,7 +37,7 @@ class Relation implements PropertyInterface
         $rows= $queryBuilder->execute();
 
         $list = [];
-        foreach ($rows as $row) {
+        foreach ($rows->fetchAllAssociative() as $row) {
             $list[] = $row['uid'];
         }
         $randList = $this->array_random($list, rand($configuration['min'], $configuration['max']));
