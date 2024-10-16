@@ -71,7 +71,7 @@ class FakerCommand extends Command
     {
         $this->output = new SymfonyStyle($input, $output);
 
-        $locale = Factory::DEFAULT_LOCALE;
+        $locale = $input->getArgument('locale') ?: Factory::DEFAULT_LOCALE;
         $amount = $input->getArgument('amount') ?: 1;
         $pid = $input->getArgument('pid') ?: -1;
         $table = $input->getArgument('table');
