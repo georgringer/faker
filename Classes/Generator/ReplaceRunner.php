@@ -55,7 +55,8 @@ class ReplaceRunner implements SingletonInterface
             $queryBuilder->where($queryBuilder->expr()->eq('pid', $this->pid));
         }
 
-        $records = $queryBuilder->execute();
+        $typo3Version = GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion();
+        $records = $typo3Version < 12 ? $queryBuilder->execute() : $queryBuilder->executeQuery();
 
         $dataMap = [];
         foreach ($records as $record) {

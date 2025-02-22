@@ -35,7 +35,8 @@ class Relation implements PropertyInterface
         $queryBuilder->select('uid')->from($table)->where(
             $queryBuilder->expr()->eq('pid', (int)$configuration['pid'])
         );
-        $rows= $queryBuilder->execute();
+        $typo3Version = GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion();
+        $rows = $typo3Version < 12 ? $queryBuilder->execute() : $queryBuilder->executeQuery();
 
         $list = [];
         foreach ($rows->fetchAllAssociative() as $row) {
