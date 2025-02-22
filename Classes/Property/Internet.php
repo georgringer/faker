@@ -6,7 +6,7 @@ use Faker\Generator;
 
 class Internet implements PropertyInterface
 {
-    static public function getSettings(array $configuration = [])
+    static public function getSettings(array $configuration = []): array
     {
         return [
             'type' => self::class,
@@ -14,6 +14,9 @@ class Internet implements PropertyInterface
         ];
     }
 
+    /**
+     * @throws \Exception
+     */
     public function generate(Generator $faker, array $configuration = [])
     {
         switch ($configuration['subtype']) {

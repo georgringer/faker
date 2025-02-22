@@ -13,7 +13,7 @@ interface PropertyInterface
      * @param array $configuration
      * @return array
      */
-    static public function getSettings(array $configuration = []);
+    static public function getSettings(array $configuration = []): array;
 
     /**
      * Generate fake data
@@ -21,5 +21,5 @@ interface PropertyInterface
      * @param array $configuration
      * @return mixed
      */
-    public function generate(Generator $faker, array $configuration = []);
+    public function generate(Generator $faker, array $configuration = []): mixed;
 }

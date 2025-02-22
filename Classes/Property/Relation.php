@@ -4,11 +4,12 @@ namespace GeorgRinger\Faker\Property;
 
 use Faker\Generator;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class Relation implements PropertyInterface
 {
-    static public function getSettings(array $configuration = [])
+    static public function getSettings(array $configuration = []): array
     {
         return [
             'type' => self::class,
@@ -25,7 +26,7 @@ class Relation implements PropertyInterface
     }
 
 
-    protected function getRelationUids(array $configuration)
+    protected function getRelationUids(array $configuration): string
     {
         $table = $configuration['table'];
 
@@ -53,7 +54,7 @@ class Relation implements PropertyInterface
      *
      * @return array Returns an array with random $num elements from original array
      */
-    protected function array_random($arr, $num = 1)
+    protected function array_random($arr, $num = 1): array
     {
         if ($num === 0) {
             return [];

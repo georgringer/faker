@@ -6,7 +6,7 @@ use Faker\Generator;
 
 class Date implements PropertyInterface
 {
-    static public function getSettings(array $configuration = [])
+    static public function getSettings(array $configuration = []): array
     {
         $from = $configuration['from'] ?? '-1month';
         $to = $configuration['to'] ?? '+3month';
