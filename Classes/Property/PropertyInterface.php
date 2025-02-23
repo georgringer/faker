@@ -21,5 +21,5 @@ interface PropertyInterface
      * @param array $configuration
      * @return mixed
      */
-    public function generate(Generator $faker, array $configuration = []): mixed;
+    public function generate(Generator $faker, array $configuration = []);
 }

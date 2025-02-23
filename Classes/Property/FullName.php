@@ -13,7 +13,7 @@ class FullName implements PropertyInterface
         ];
     }
 
-    public function generate(Generator $faker, array $configuration = []): string
+    public function generate(Generator $faker, array $configuration = [])
     {
         return $faker->firstName . ' ' . $faker->lastName;
     }
