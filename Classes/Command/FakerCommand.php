@@ -23,7 +23,7 @@ class FakerCommand extends Command
     /**
      * Configure the command by defining the name, options and arguments
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this->setDescription('Generates fake test data.')
             ->setHelp('Generates database entries with fake data using Faker engine.')
@@ -59,7 +59,7 @@ class FakerCommand extends Command
      * @param $string
      * @param $arguments
      */
-    protected function outputLine($message, $arguments = null)
+    protected function outputLine($message, $arguments = null): void
     {
         $this->output->writeln(vsprintf($message, $arguments));
     }
@@ -133,7 +133,7 @@ class FakerCommand extends Command
      * @param string $table
      * @return boolean
      */
-    protected function checkValidTableName($table)
+    protected function checkValidTableName($table): bool
     {
         if (empty($table)) {
             $this->outputLine('Missing argument: table');

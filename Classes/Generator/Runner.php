@@ -31,7 +31,7 @@ class Runner implements SingletonInterface
      * @param string $locale
      * @param int $seed
      */
-    public function __construct($table, $pid, $locale, $seed)
+    public function __construct(string $table, int $pid, string $locale, int $seed)
     {
         $this->dataHandler = GeneralUtility::makeInstance(DataHandler::class);
         $this->table = $table;
@@ -44,7 +44,7 @@ class Runner implements SingletonInterface
      * @param int $amount
      * @return void
      */
-    public function execute($amount = 1)
+    public function execute(int $amount = 1): void
     {
         $dataMap = [];
         for ($i = 1; $i <= $amount; $i++) {
@@ -61,7 +61,7 @@ class Runner implements SingletonInterface
     /**
      * @return array
      */
-    protected function createRecordFields()
+    protected function createRecordFields(): array
     {
         $filled = [
             'pid' => $this->pid
@@ -82,7 +82,7 @@ class Runner implements SingletonInterface
     /**
      * @return array
      */
-    protected function getFakerFields()
+    protected function getFakerFields(): array
     {
         $fields = [];
         foreach ($GLOBALS['TCA'][$this->table]['columns'] as $name => $field) {

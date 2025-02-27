@@ -6,7 +6,7 @@ use Faker\Generator;
 
 class Username implements PropertyInterface
 {
-    static public function getSettings(array $configuration = [])
+    static public function getSettings(array $configuration = []): array
     {
         return [
             'type' => self::class,
