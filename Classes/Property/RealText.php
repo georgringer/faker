@@ -7,7 +7,7 @@ use TYPO3\CMS\Core\Utility\MathUtility;
 
 class RealText implements PropertyInterface
 {
-    static public function getSettings(array $configuration = [])
+    static public function getSettings(array $configuration = []): array
     {
         return [
             'type' => self::class,

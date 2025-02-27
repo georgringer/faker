@@ -7,7 +7,7 @@ use TYPO3\CMS\Core\Utility\MathUtility;
 
 class Numeric implements PropertyInterface
 {
-    static public function getSettings(array $configuration = [])
+    static public function getSettings(array $configuration = []): array
     {
         $min = MathUtility::forceIntegerInRange((int)$configuration['min'], -2147483647, 2147483647, 0);
         $max = $configuration['max'] ?? $min;

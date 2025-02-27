@@ -13,7 +13,7 @@ interface PropertyInterface
      * @param array $configuration
      * @return array
      */
-    static public function getSettings(array $configuration = []);
+    static public function getSettings(array $configuration = []): array;
 
     /**
      * Generate fake data

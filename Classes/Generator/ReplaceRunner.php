@@ -7,6 +7,7 @@ use Faker\Generator;
 use GeorgRinger\Faker\Property\PropertyInterface;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -31,7 +32,7 @@ class ReplaceRunner implements SingletonInterface
      * @param int $pid
      * @param string $locale
      */
-    public function __construct($table, $pid, $locale)
+    public function __construct(string $table, int $pid, string $locale)
     {
         $this->dataHandler = GeneralUtility::makeInstance(DataHandler::class);
         $this->table = $table;
@@ -44,7 +45,7 @@ class ReplaceRunner implements SingletonInterface
      *
      * @return void
      */
-    public function execute()
+    public function execute(): void
     {
         /** @var \TYPO3\CMS\Core\Database\Query\QueryBuilder$queryBuilder */
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($this->table);
@@ -54,7 +55,8 @@ class ReplaceRunner implements SingletonInterface
             $queryBuilder->where($queryBuilder->expr()->eq('pid', $this->pid));
         }
 
-        $records = $queryBuilder->execute();
+        $typo3Version = GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion();
+        $records = $typo3Version < 12 ? $queryBuilder->execute() : $queryBuilder->executeQuery();
 
         $dataMap = [];
         foreach ($records as $record) {
@@ -70,7 +72,7 @@ class ReplaceRunner implements SingletonInterface
     /**
      * @return array
      */
-    protected function createRecordFields()
+    protected function createRecordFields(): array
     {
         $filled = [];
         foreach ($this->getFakerFields() as $name => $config) {
@@ -84,7 +86,7 @@ class ReplaceRunner implements SingletonInterface
     /**
      * @return array
      */
-    protected function getFakerFields()
+    protected function getFakerFields(): array
     {
         $fields = [];
         foreach ($GLOBALS['TCA'][$this->table]['columns'] as $name => $field) {

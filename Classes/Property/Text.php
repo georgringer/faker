@@ -7,7 +7,7 @@ use TYPO3\CMS\Core\Utility\MathUtility;
 
 class Text implements PropertyInterface
 {
-    static public function getSettings(array $configuration = [])
+    static public function getSettings(array $configuration = []): array
     {
         $from = MathUtility::forceIntegerInRange((int)($configuration['from'] ?? 20), 5, 20000);
         $to = $configuration['to'] ?? $from;
