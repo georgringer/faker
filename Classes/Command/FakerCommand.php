@@ -73,7 +73,7 @@ class FakerCommand extends Command
 
         $locale = $input->getArgument('locale') ?: Factory::DEFAULT_LOCALE;
         $amount = $input->getArgument('amount') ?: 1;
-        $pid = $input->getArgument('pid') ?: -1;
+        $pid = (int)$input->getArgument('pid') ?: -1;
         $table = $input->getArgument('table');
 
         \TYPO3\CMS\Core\Core\Bootstrap::initializeBackendAuthentication();
