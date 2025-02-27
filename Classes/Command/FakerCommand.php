@@ -48,6 +48,10 @@ class FakerCommand extends Command
                 'locale',
                 InputArgument::OPTIONAL,
                 'The locale to generate records for'
+            )->addArgument(
+                'seed',
+                InputArgument::OPTIONAL,
+                'Seed for the random number generator to produce the same results on each run'
             );
     }
 
@@ -75,12 +79,13 @@ class FakerCommand extends Command
         $amount = $input->getArgument('amount') ?: 1;
         $pid = $input->getArgument('pid') ?: -1;
         $table = $input->getArgument('table');
+        $seed = $input->getArgument('seed') ?: 0;
 
         \TYPO3\CMS\Core\Core\Bootstrap::initializeBackendAuthentication();
         if ($input->getOption('replace')) {
             $return = $this->executeReplaceFaker($table, $pid, $locale);
         } else {
-            $return = $this->executeFaker($table, $pid, $locale, $amount);
+            $return = $this->executeFaker($table, $pid, $locale, $amount, $seed);
         }
 
         return $return ? 0 : 1;
@@ -91,15 +96,16 @@ class FakerCommand extends Command
      * @param int $pid
      * @param string $locale
      * @param $amount
+     * @param int $seed
      * @return boolean
      */
-    protected function executeFaker($table, $pid, $locale, $amount)
+    protected function executeFaker($table, $pid, $locale, $amount, $seed)
     {
         if (! $this->checkValidTableName($table)) {
             return false;
         }
         /** @var Runner $runner */
-        $runner = GeneralUtility::makeInstance(Runner::class, $table, $pid, $locale);
+        $runner = GeneralUtility::makeInstance(Runner::class, $table, $pid, $locale, $seed);
         $runner->execute($amount);
         return true;
     }
