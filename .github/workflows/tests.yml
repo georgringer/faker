@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - functional-tests
   pull_request:
     branches:
       - master
@@ -67,5 +66,4 @@ jobs:
           typo3DatabaseName: db
         run:  |
           sudo /etc/init.d/mysql start
-          mysql -e 'CREATE DATABASE db;' -uroot -proot
           .Build/bin/phpunit -c .Build/vendor/typo3/testing-framework/Resources/Core/Build/FunctionalTests.xml Tests/Functional/
