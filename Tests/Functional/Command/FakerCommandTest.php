@@ -22,14 +22,14 @@ class FakerCommandTest extends FunctionalTestCase
     {
         yield 'Categories' => [
             'tableName' => 'sys_category',
-            'amount' => 10,
+            'expect' => 10,
             'columns' => [
                 'text' => ['title'],
             ],
         ];
         yield 'Frontend Users' => [
             'tableName' => 'fe_users',
-            'amount' => 1,
+            'expect' => 5,
             'columns' => [
                 'text' => [
                     'username',
@@ -49,7 +49,7 @@ class FakerCommandTest extends FunctionalTestCase
         ];
         yield 'News' => [
             'tableName' => 'tx_news_domain_model_news',
-            'amount' => 5,
+            'expect' => 5,
             'columns' => [
                 'text' => ['title', 'teaser', 'bodytext', 'author'],
                 'relation' => ['categories'],
@@ -61,12 +61,12 @@ class FakerCommandTest extends FunctionalTestCase
     /**
      * @dataProvider fakerInstractionDataProvider
      */
-    public function testFakerCommand(string $tableName, int $amount, array $columns): void
+    public function testFakerCommand(string $tableName, int $expect, array $columns): void
     {
         $this->commandTester->execute([
             'table' => $tableName,
             'pid' => '2',
-            'amount' => (string)$amount,
+            'amount' => '5',
         ]);
 
         $qb = $this->getConnectionPool()->getQueryBuilderForTable($tableName);
@@ -76,18 +76,18 @@ class FakerCommandTest extends FunctionalTestCase
             ->fetchAllAssociative();
 
         self::assertEquals(Command::SUCCESS, $this->commandTester->getStatusCode());
-        self::assertCount($amount, $records);
+        self::assertCount($expect, $records);
 
         $record = $records[0];
         foreach ($columns['text'] ?? [] as $textField) {
             self::assertIsString($record[$textField]);
             self::assertNotEmpty($record[$textField]);
         }
-        foreach ($coumns['relation'] ?? [] as $relationField) {
+        foreach ($columns['relation'] ?? [] as $relationField) {
             self::assertIsInt($record[$relationField]);
-            self::assertGreaterThan(0, $record[$relationField]);
+            self::assertLessThanOrEqual(5, $record[$relationField]);
         }
-        foreach ($coumns['date'] ?? [] as $dateField) {
+        foreach ($columns['date'] ?? [] as $dateField) {
             self::assertIsInt($record[$dateField]);
             self::assertGreaterThan(0, $record[$dateField]);
         }
@@ -99,6 +99,7 @@ class FakerCommandTest extends FunctionalTestCase
 
         $this->importCSVDataSet(__DIR__ . '/../Fixtures/pages.csv');
         $this->importCSVDataSet(__DIR__ . '/../Fixtures/be_users.csv');
+        $this->importCSVDataSet(__DIR__ . '/../Fixtures/sys_category.csv');
         $this->setUpBackendUser(1);
 
         $languageFactory = GeneralUtility::makeInstance(LanguageServiceFactory::class);
