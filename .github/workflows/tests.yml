@@ -13,7 +13,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      DB_DATABASE: test_db
+      DB_DATABASE: db
       DB_USER: root
       DB_PASSWORD: root
 
@@ -64,6 +64,7 @@ jobs:
           typo3DatabasePort: 3306
           typo3DatabaseUsername: root
           typo3DatabasePassword: root
+          typo3DatabaseName: db
         run:  |
           sudo /etc/init.d/mysql start
           mysql -e 'CREATE DATABASE db;' -uroot -proot
