@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - functional-tests
   pull_request:
     branches:
       - master
@@ -51,3 +52,12 @@ jobs:
 
       - name: Run Unit Tests
         run: .Build/bin/phpunit -c .Build/vendor/typo3/testing-framework/Resources/Core/Build/UnitTests.xml Tests/Unit/
+
+      - name: Run Functional Tests
+        if: matrix.php-version != '7.4'
+        env:
+          typo3DatabaseHost: 127.0.0.1
+          typo3DatabaseUsername: root
+          typo3DatabasePassword: root
+          typo3DatabaseName: db
+        run: .Build/bin/phpunit -c .Build/vendor/typo3/testing-framework/Resources/Core/Build/FunctionalTests.xml Tests/Functional/
