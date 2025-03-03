@@ -29,13 +29,15 @@ class Runner implements SingletonInterface
      * @param string $table
      * @param int $pid
      * @param string $locale
+     * @param int $seed
      */
-    public function __construct(string $table, int $pid, string $locale)
+    public function __construct(string $table, int $pid, string $locale, int $seed)
     {
         $this->dataHandler = GeneralUtility::makeInstance(DataHandler::class);
         $this->table = $table;
         $this->pid = $pid;
         $this->faker = Factory::create($locale);
+        $this->faker->seed($seed ?: null);
     }
 
     /**
