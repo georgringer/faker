@@ -79,7 +79,7 @@ class FakerCommand extends Command
         $amount = $input->getArgument('amount') ?: 1;
         $pid = $input->getArgument('pid') ?: -1;
         $table = $input->getArgument('table');
-        $seed = $input->getArgument('seed') ?: 0;
+        $seed = (int)$input->getArgument('seed') ?: 0;
 
         \TYPO3\CMS\Core\Core\Bootstrap::initializeBackendAuthentication();
         if ($input->getOption('replace')) {
