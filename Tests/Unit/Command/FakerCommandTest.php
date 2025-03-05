@@ -42,7 +42,7 @@ class FakerCommandTest extends UnitTestCase
         $mockedCommand->method('checkValidTableName')->willReturn(true);
         $mockedCommand->expects($this->once())->method('checkValidTableName');
 
-        $mockedCommand->_call('executeFaker', 'table', 123, Factory::DEFAULT_LOCALE, 1);
+        $mockedCommand->_call('executeFaker', 'table', 123, Factory::DEFAULT_LOCALE, 1, 0);
     }
 //
 
