@@ -18,7 +18,7 @@ class FakerCommandTest extends FunctionalTestCase
         'typo3conf/ext/news',
     ];
 
-    public static function fakerInstractionDataProvider(): iterable
+    public static function fakerInstructionDataProvider(): iterable
     {
         yield 'Categories' => [
             'tableName' => 'sys_category',
@@ -58,7 +58,7 @@ class FakerCommandTest extends FunctionalTestCase
         ];
     }
 
-    public static function fakerSeedDataProvider(): iterable
+    public static function seedDataProvider(): iterable
     {
         yield 'Categories' => [
             'tableName' => 'sys_category',
@@ -98,8 +98,48 @@ class FakerCommandTest extends FunctionalTestCase
         ];
     }
 
+    public static function seedPriorPhp83DataProvider(): iterable
+    {
+        yield 'Categories' => [
+            'tableName' => 'sys_category',
+            'seed' => 1234,
+            'columns' => [
+                'title' => 'dolores dolorum amet',
+            ],
+        ];
+        yield 'Frontend Users' => [
+            'tableName' => 'fe_users',
+            'seed' => 1234,
+            'columns' => [
+                'username' => 'qkunze',
+                'name' => 'Justice Moore',
+                'first_name' => 'Orville',
+                'middle_name' => '',
+                'last_name' => 'Satterfield',
+                'address' => '715 Douglas Stravenue',
+                'telephone' => '850.553.3310',
+                'email' => 'lennie.boyle@example.org',
+                'zip' => '50308-3165',
+                'city' => 'North Cordie',
+                'country' => 'Fiji',
+                'www' => 'http://roob.biz/',
+            ],
+        ];
+        yield 'News' => [
+            'tableName' => 'tx_news_domain_model_news',
+            'seed' => 4321,
+            'columns' => [
+                'title' => 'Dolor magnam assumenda vel quis ut vel quibusdam.',
+                'teaser' => 'Quaerat repellendus enim laboriosam aut quia. Hic aspernatur quo qui autem ratione eum expedita. Aut earum architecto non quasi ab. Iste distinctio earum nam doloribus ipsa dolorum. Enim error sunt beatae fugit. Aut qui animi nulla consequatur aut consequuntur enim. At quo non mollitia placeat et accusantium et repellat. Rerum facere numquam reprehenderit necessitatibus libero sequi. Quis minima rerum consectetur eaque aut et. Similique vero tenetur nostrum itaque qui minus. Molestiae voluptatum consequatur asperiores quod harum adipisci quis. Saepe rerum nulla a ducimus et eos. Quidem veniam nulla exercitationem iusto aut consequatur esse consequuntur. Nemo voluptatem voluptatibus impedit delectus alias cum. Itaque odio enim nam dolorem dignissimos assumenda modi. Optio voluptatum ea iste. Quasi consectetur ut rerum quis.',
+                'bodytext' => 'Non culpa doloremque placeat suscipit. Et odio error deleniti est ipsam. Dolor nostrum eveniet sit enim sit voluptatum. Magnam error accusantium et eligendi necessitatibus aut sunt. Ut sint consequatur autem qui consectetur soluta. Mollitia atque nisi est numquam autem. Excepturi reiciendis perspiciatis aspernatur incidunt vitae sunt. Est itaque sed laborum vel sit. Rerum eveniet dolor iste fuga sit magni enim. Occaecati animi ex quia. Consequatur molestiae mollitia culpa labore necessitatibus. Rerum nisi beatae nesciunt voluptas. Eum cumque dolore sunt. Officiis aut illum deleniti voluptatem sed nesciunt. Distinctio et iure dolores dolorum ut eos. Illum voluptatem illum dolorem excepturi quibusdam eos ipsam. Vel dicta commodi fugiat nihil esse delectus. Aut cupiditate porro facere eveniet nihil sit harum. Iure quas sint qui nam cumque similique sint. Non porro veritatis a perferendis voluptate. Aut quidem illum enim minus odit voluptas. Tempora nam ea eaque placeat doloribus aperiam. Explicabo et expedita ea omnis beatae voluptatem. Odit assumenda ut ut doloremque ut. Est modi ut in soluta iure. Iste earum laborum consequatur quaerat consequuntur qui. Voluptas alias non quo saepe et voluptates rerum. Eum reiciendis dolore ad laborum ipsam dolore veniam. Ab est cum itaque fuga. Omnis perspiciatis magnam ut aliquam itaque voluptas nostrum. Sed et accusantium dolorem est doloremque quisquam. Aperiam molestiae velit magnam labore ut unde doloribus. Est consequuntur corporis quia cupiditate est quod omnis. Qui sit incidunt inventore laborum est et odio. Est blanditiis quis consequatur. Impedit id voluptas soluta ea aut ipsum. Qui at qui ipsa in. Magni sint debitis amet fugiat doloribus eos. Amet magni aut et hic dolores placeat libero. Molestias quia aliquid dolores harum tenetur dolores. Quibusdam consequatur rerum qui quaerat suscipit quia. Nesciunt voluptatum dicta necessitatibus. Necessitatibus temporibus iusto nulla. Iusto quo quod eius pariatur voluptatem. Blanditiis consequatur facere nobis esse placeat iste quia. Hic hic sed sed a. A similique nostrum et reiciendis vel autem perferendis. Corrupti dolores accusantium veritatis explicabo corrupti laboriosam. Quia id magni ipsam accusantium delectus qui aliquam aliquid. Consequatur deserunt voluptatem et atque dolor. Est molestias qui quaerat officia ut facere quia. Et quia repudiandae nihil omnis nam. Dolores sed hic quas incidunt quod. Facilis cupiditate aut nemo vitae debitis libero. Et maxime enim et neque ad sed quibusdam. Quia rerum assumenda deserunt voluptatum nobis. Aut sunt dolores rerum laborum officiis aut porro dolorem. Sint magnam quo et recusandae illum rem est qui. Aliquam dolorum veritatis porro autem a. Aspernatur sit cumque iusto repellendus quae repellat quisquam. Aut aut tempora nostrum dolores rerum. Libero eveniet possimus aut id sunt. Nisi fugiat saepe sed libero omnis odit. Qui cupiditate error ut nihil eius. Quisquam quisquam doloremque qui consequuntur ut officia. Sed voluptate non reprehenderit et non et. Assumenda temporibus consequatur iusto et omnis. Totam rem aut omnis non beatae amet. Labore autem ut quae neque perferendis. Dicta rerum quia et aliquid accusamus et vel libero. Tempora id et excepturi sed debitis. A in exercitationem illum ea nisi mollitia ut. Qui commodi aut iusto quia dolores aliquam non. Explicabo consectetur quia est commodi natus. Quis dolorem voluptatem qui id recusandae. Tempore eos magnam non aliquid. Et porro omnis ipsam vel. Velit voluptatem tempore eaque blanditiis et. Et reiciendis sed fugit deserunt quo voluptate. Quis et numquam eum id vitae. Veritatis occaecati provident nisi natus doloribus. Ipsam possimus quod beatae ratione nulla dolor quo. Ea est quia ea sit sint debitis. Voluptatem sit praesentium id cupiditate quidem eum quis rerum. Temporibus et eaque atque vero nam vel. Quaerat commodi nulla molestiae ea. Dolor autem ut fuga illo est. Maxime sed nihil modi consequatur. Maiores sit aut repudiandae culpa. In aperiam harum reiciendis id autem. Eos quae aut voluptatem vero itaque. Similique ducimus qui rerum distinctio aut. Dolorem itaque quaerat nam consequuntur et adipisci sapiente explicabo. Sapiente soluta illo culpa id est. Autem necessitatibus accusamus ipsam quia. Ut omnis nisi vel voluptatem placeat sed. Modi non odit et accusamus aliquam in placeat. Est libero vel et odio corrupti. Earum aliquam autem exercitationem eum similique magnam. Sed ut nesciunt aspernatur. Cupiditate ut et laboriosam laudantium. Et numquam dolore nulla nobis. Cumque sequi tempora eius asperiores. Qui quia dolorem unde qui omnis ipsam. Aliquid adipisci quo alias voluptatem repudiandae aliquid illum laborum. Doloribus provident eius aut ab autem error. Et voluptatum amet quaerat veritatis quibusdam non. Aperiam ea accusantium qui aut mollitia. Repellat est possimus sed ut qui dolores. Magni qui consectetur veniam est porro. Fugit ipsa laboriosam fugit temporibus exercitationem voluptas. Assumenda ab expedita facilis sed in. Ipsam quo nemo modi quisquam laborum molestiae. Tenetur neque doloribus animi accusamus laborum. Rerum exercitationem rerum facere et. Modi omnis repellat et quam distinctio sunt nesciunt. Esse culpa veritatis perspiciatis illo corporis. Et omnis et neque quidem nulla eum dolorem. Ab ab et et vel. Eum sint dolor veritatis laudantium. Quas minus minima dolorem aliquam quidem. Accusamus rerum accusantium aliquid sed molestiae adipisci architecto qui. Nihil magnam aliquid repellat laudantium. Cumque aut et voluptatem aut et. Deleniti et mollitia natus atque libero nobis omnis et. Qui eaque suscipit quaerat at et nulla id. Incidunt quidem vel dolores earum. Illo dolorem id nihil. Odio dolore voluptatem vitae qui praesentium maiores. Dolores ut qui sunt quos et iusto numquam. Deleniti sit alias quo ut consequatur repellendus voluptates. Enim ea recusandae asperiores ut aliquam. Consequatur ut qui occaecati nulla similique. Vel facere assumenda maxime beatae consectetur officia. Non totam est quae totam assumenda eius. Veritatis minus praesentium repellat quisquam adipisci dicta. Doloremque tempora eum quo recusandae aperiam perspiciatis quaerat. Iusto reprehenderit voluptatem maxime fuga cum nemo. Aut vel eos dolor. Est et nemo dolorem eius rem. Similique tempore commodi iste possimus. In mollitia culpa cum dignissimos debitis. Numquam voluptatum vel molestias sint. Tenetur doloremque neque pariatur exercitationem voluptatem velit. Qui explicabo eius repellat qui est at blanditiis. Placeat explicabo dicta numquam perspiciatis. Quod non corrupti reprehenderit laboriosam sunt amet. Excepturi vero voluptatum alias ducimus. Natus cumque aut sed quibusdam modi asperiores. Minima optio repudiandae sapiente quia voluptates sint necessitatibus in. Dolores rerum dolor quia blanditiis maxime dignissimos voluptatum. Consequuntur non quia provident dolorem. Harum ratione sit et. Laboriosam deserunt cupiditate velit quia explicabo est. Nulla aut id esse.',
+                'author' => 'Alda Abernathy',
+                'categories' => 3,
+            ],
+        ];
+    }
+
     /**
-     * @dataProvider fakerInstractionDataProvider
+     * @dataProvider fakerInstructionDataProvider
      */
     public function testFakerCommand(string $tableName, int $expect, array $columns): void
     {
@@ -134,9 +174,15 @@ class FakerCommandTest extends FunctionalTestCase
     }
 
     /**
-     * @dataProvider fakerSeedDataProvider
+     * @dataProvider seedPriorPhp83DataProvider
+     * @requires PHP < 8.3
      */
-    public function testFakerSeedCommand(string $tableName, int $seed, array $columns): void
+    public function testFakerSeedPriorPhp83(string $tableName, int $seed, array $columns): void
+    {
+        $this->executeFakerSeedCommand($tableName, $seed, $columns);
+    }
+
+    protected function executeFakerSeedCommand(string $tableName, int $seed, array $columns): void
     {
         $this->commandTester->execute([
             'table' => $tableName,
@@ -146,7 +192,7 @@ class FakerCommandTest extends FunctionalTestCase
             'seed' => (string)$seed,
         ]);
 
-        $qb = $this->getConnectionPool()->getQueryBuilderForTable('sys_category');
+        $qb = $this->getConnectionPool()->getQueryBuilderForTable($tableName);
         $record = $qb->select('*')
             ->from($tableName)
             ->orderBy('uid', 'DESC')
@@ -158,6 +204,15 @@ class FakerCommandTest extends FunctionalTestCase
         foreach ($columns as $field => $value) {
             self::assertEquals($value, $record[$field]);
         }
+    }
+
+    /**
+     * @dataProvider seedDataProvider
+     * @requires PHP >= 8.3
+     */
+    public function testFakerSeed(string $tableName, int $seed, array $columns): void
+    {
+        $this->executeFakerSeedCommand($tableName, $seed, $columns);
     }
 
     protected function setUp(): void
